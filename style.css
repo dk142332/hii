@@ -1,0 +1,197 @@
+/* ===== 기본 설정 ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px 16px;
+  background: #faf6f0;                       /* 베이지 배경 */
+  color: #3b2a1e;
+  font-family: '맑은 고딕', 'Malgun Gothic', sans-serif;
+}
+
+/* 최대 너비 520px, 가운데 정렬 */
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 28px 24px;
+  border-radius: 16px;                       /* 둥근 모서리 */
+  box-shadow: 0 6px 20px rgba(107, 66, 38, 0.12); /* 부드러운 그림자 */
+}
+
+/* ===== 상단 (로고 / 이름 / 부제) ===== */
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.logo {
+  font-size: 64px;                           /* 이모지를 크게 */
+  line-height: 1;
+}
+
+.header h1 {
+  margin: 8px 0 4px;
+  color: #6b4226;                            /* 브라운 */
+  font-size: 28px;
+}
+
+.subtitle {
+  margin: 0;
+  color: #8a6a52;
+  font-size: 14px;
+}
+
+/* ===== 입력 항목 공통 ===== */
+.field {
+  margin: 0 0 18px;
+  padding: 0;
+  border: none;
+}
+
+label,
+legend {
+  display: block;
+  margin-bottom: 6px;
+  padding: 0;
+  font-weight: bold;
+  color: #6b4226;
+  font-size: 15px;
+}
+
+.required {
+  color: #c0392b;
+}
+
+/* 입력칸: 너비 100%, 패딩 10px, 둥근 모서리 8px */
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d9c9b8;
+  border-radius: 8px;
+  background: #fffdfa;
+  font-family: inherit;
+  font-size: 15px;
+  color: #3b2a1e;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* 포커스 시: 갈색 테두리 + 연한 갈색 그림자 */
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #6b4226;
+  box-shadow: 0 0 0 3px rgba(107, 66, 38, 0.2);
+}
+
+/* ===== 라디오 / 체크박스: 가로 배치 ===== */
+.option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;                             /* 간격 */
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 옵션 안의 label은 일반 글씨로 */
+.option label {
+  margin: 0;
+  font-weight: normal;
+  color: #3b2a1e;
+  cursor: pointer;
+}
+
+.option input {
+  accent-color: #6b4226;
+  cursor: pointer;
+}
+
+/* 키보드로 이동할 때 보이는 표시 */
+.option input:focus-visible {
+  outline: 2px solid #6b4226;
+  outline-offset: 2px;
+}
+
+/* ===== 예상 금액 ===== */
+.total {
+  margin: 24px 0 16px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #6b4226;
+}
+
+/* ===== 버튼 ===== */
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(107, 66, 38, 0.4);
+  outline-offset: 2px;
+}
+
+/* 주문하기: 갈색 배경, 흰색 글씨, hover 시 약간 밝게 */
+.btn-primary {
+  background: #6b4226;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #85553a;
+}
+
+/* 다시 작성 */
+.btn-secondary {
+  background: #efe6db;
+  color: #6b4226;
+}
+
+.btn-secondary:hover {
+  background: #e4d6c6;
+}
+
+/* ===== 주문 확인 메시지: 연두 배경, 초록 글씨 ===== */
+.confirm {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: #e6f6dc;
+  color: #2e7d32;
+  border-radius: 8px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+/* hidden 속성이 항상 우선하도록 */
+.confirm[hidden] {
+  display: none;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>바이브 카페 주문서</title>
+  <!-- 스타일 파일 연결 -->
+  <link rel="stylesheet" href="style.css">
+  <!-- 엑셀 파일 저장용 라이브러리 (SheetJS, CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <main class="container">
+
+    <!-- ===== 페이지 상단: 로고 / 카페 이름 / 부제 ===== -->
+    <header class="header">
+      <div class="logo" aria-hidden="true">☕</div>
+      <h1>바이브 카페</h1>
+      <p class="subtitle">당신의 하루에 바이브를 더하다</p>
+    </header>
+
+    <!-- ===== 주문서 ===== -->
+    <form id="orderForm" novalidate>
+
+      <!-- 1. 이름 (필수) -->
+      <div class="field">
+        <label for="name">이름 <span class="required">*</span></label>
+        <input type="text" id="name" name="name" placeholder="홍길동" autocomplete="name">
+      </div>
+
+      <!-- 2. 전화번호 -->
+      <div class="field">
+        <label for="phone">전화번호</label>
+        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" autocomplete="tel">
+      </div>
+
+      <!-- 3. 음료 선택 (data-price = 음료 가격) -->
+      <div class="field">
+        <label for="drink">음료 선택</label>
+        <select id="drink" name="drink">
+          <option value="" data-price="0">음료를 선택해주세요</option>
+          <option value="아메리카노" data-price="3500">아메리카노 3,500원</option>
+          <option value="카페라떼" data-price="4000">카페라떼 4,000원</option>
+          <option value="카페모카" data-price="4500">카페모카 4,500원</option>
+          <option value="바닐라라떼" data-price="4500">바닐라라떼 4,500원</option>
+          <option value="녹차라떼" data-price="4500">녹차라떼 4,500원</option>
+        </select>
+      </div>
+
+      <!-- 4. 사이즈 (라디오, 가로 배치 / M 기본 선택) -->
+      <fieldset class="field">
+        <legend>사이즈</legend>
+        <div class="option-row">
+          <div class="option">
+            <input type="radio" id="sizeS" name="size" value="S" data-price="0">
+            <label for="sizeS">S (+0원)</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sizeM" name="size" value="M" data-price="500" checked>
+            <label for="sizeM">M (+500원)</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="sizeL" name="size" value="L" data-price="1000">
+            <label for="sizeL">L (+1,000원)</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- 5. 추가 옵션 (체크박스, 가로 배치) -->
+      <fieldset class="field">
+        <legend>추가 옵션</legend>
+        <div class="option-row">
+          <div class="option">
+            <input type="checkbox" id="optShot" name="options" value="샷 추가" data-price="500">
+            <label for="optShot">샷 추가 (+500원)</label>
+          </div>
+          <div class="option">
+            <input type="checkbox" id="optCream" name="options" value="크림 추가" data-price="500">
+            <label for="optCream">크림 추가 (+500원)</label>
+          </div>
+          <div class="option">
+            <input type="checkbox" id="optSyrup" name="options" value="시럽 추가" data-price="300">
+            <label for="optSyrup">시럽 추가 (+300원)</label>
+          </div>
+          <div class="option">
+            <input type="checkbox" id="optDecaf" name="options" value="디카페인" data-price="0">
+            <label for="optDecaf">디카페인 (+0원)</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- 6. 수량 (1~10, 기본값 1) -->
+      <div class="field">
+        <label for="quantity">수량</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+      </div>
+
+      <!-- 7. 요청사항 -->
+      <div class="field">
+        <label for="request">요청사항</label>
+        <textarea id="request" name="request" rows="3" placeholder="예) 얼음 적게 넣어주세요"></textarea>
+      </div>
+
+      <!-- 예상 금액: 주문하기 버튼 바로 위 -->
+      <div class="total" id="total" aria-live="polite">예상 금액: 0원</div>
+
+      <!-- 8, 9. 버튼 -->
+      <div class="buttons">
+        <button type="submit" class="btn btn-primary">주문하기</button>
+        <button type="reset" class="btn btn-secondary">다시 작성</button>
+      </div>
+    </form>
+
+    <!-- 주문 확인 메시지 (처음엔 숨김) -->
+    <div id="confirm" class="confirm" role="status" hidden></div>
+
+  </main>
+
+  <!-- 동작 파일 연결 -->
+  <script src="script.js"></script>
+</body>
+</html>
